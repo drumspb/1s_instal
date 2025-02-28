@@ -1,0 +1,4 @@
+- name: Установка 1С
+  command: "/tmp/1C_Enterprise_{{ 1s_version }}.run--mode unattended --enable-components server,ws,server_admin,config_storage_server"
+  args:
+    creates: "/opt/1cv8/x86_64/{{ 1s_version }}"

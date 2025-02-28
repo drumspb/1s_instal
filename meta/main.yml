@@ -1,0 +1,10 @@
+galaxy_info:
+  author: "Drumspb"
+  description: "Роль для установки 1С с проверкой версии"
+  license: "MIT"
+  min_ansible_version: "2.9"
+  platforms:
+    - name: Ubuntu
+      versions:
+        - all
+dependencies: []

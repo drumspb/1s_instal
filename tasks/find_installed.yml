@@ -1,0 +1,9 @@
+- name: Найти установленную версию 1С
+  shell: "find / -type d -path '*/1cv8/x86_64/8.3.*.*' 2>/dev/null | head -n1"
+  register: current_version_path
+  changed_when: false
+
+- name: Определение текущей версии 1С
+  set_fact:
+    current_version: "{{ current_version_path.stdout | basename }}"
+    current_version_dir: "{{ current_version_path.stdout }}"

@@ -1,0 +1,5 @@
+- name: Запуск uninstaller-full для удаления 1С
+  command: "{{ current_version_dir }}/uninstaller-full -y"
+  args:
+    removes: "{{ current_version_dir }}"
+  when: lookup('file', current_version_dir + '/uninstaller-full') is not none
