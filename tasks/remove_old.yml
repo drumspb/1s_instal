@@ -3,3 +3,8 @@
   args:
     removes: "{{ current_version_dir }}"
   when: lookup('file', current_version_dir + '/uninstaller-full') is not none
+
+- name: Удаление общих компонентов 1C
+  apt:
+    name: 1c-enterprise83-common
+    state: absent  
