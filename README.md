@@ -1,38 +1,36 @@
-Role Name
-=========
+# Роль Ansible: 1С:Предприятие  
 
-A brief description of the role goes here.
+## Описание  
 
-Requirements
-------------
+Данная роль предназначена для установки, обновления и удаления сервера 1С:Предприятие на Linux.  
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+## Возможности  
 
-Role Variables
---------------
+- Определение установленной версии 1С  
+- Удаление старой версии (если она отличается от требуемой)  
+- Скачивание дистрибутива 1С с FTP  
+- Установка 1С с `.run`-инсталлятора  
+- Запуск и настройка сервисов 1С  
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+## Переменные  
 
-Dependencies
-------------
+| Переменная          | Описание                                       | Значение по умолчанию |
+|---------------------|-----------------------------------------------|-----------------------|
+| `1s_version`       | Версия 1С, которую необходимо установить       | `8.3.22.1923`        |
+| `ftp_server`       | Адрес FTP-сервера с дистрибутивами             | `ftp://example.com`  |
+| `ftp_user`         | Логин для FTP                                  | `user`               |
+| `ftp_password`     | Пароль для FTP                                 | `password`           |
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+## Использование  
 
-Example Playbook
-----------------
+Пример плейбука:  
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
-
-License
--------
-
-BSD
-
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+```yaml
+- hosts: servers
+  roles:
+    - role: 1s_install
+      vars:
+        1s_version: "8.3.22.1923"
+        ftp_server: "ftp://mail.nevis.spb.ru/1s_run"
+        ftp_user: "ftp_user"
+        ftp_password: "ftp_pass"
