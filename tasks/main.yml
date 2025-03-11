@@ -8,17 +8,17 @@
 
 - name: Остановка служб 1С перед удалением
   include_tasks: stop_services.yml
-  when: current_version != "" and current_version != _1s_version
+  when: current_version != "" and current_version != version_1s
 
 - name: Удаление старой версии 1С
   include_tasks: remove_old.yml
-  when: current_version != "" and current_version != _1s_version
+  when: current_version != "" and current_version != version_1s
 
 - name: Скачивание новой версии 1С
   include_tasks: download.yml
-  when: current_version != "" and current_version != _1s_version
+  when: current_version != "" and current_version != version_1s
 
 - name: Установка новой версии 1С
   include_tasks: install.yml
-  when: current_version != "" and current_version != _1s_version
+  when: current_version != "" and current_version != version_1s
 

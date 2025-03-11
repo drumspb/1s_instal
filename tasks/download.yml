@@ -1,5 +1,9 @@
+- name: Определение имени файла из полного пути
+  set_fact:
+    ftp_file: "{{ ftp_full_path | basename }}"
+
 - name: Скачивание новой версии 1С с FTP
   get_url:
-    url: "ftp://{{ ftp_user }}:{{ ftp_password }}@mail.nevis.spb.ru/1s_run/1C_Enterprise_{{ 1s_version }}.run"
-    dest: "/tmp/1C_Enterprise_{{ 1s_version }}.run"
-    mode: '0755'
+    url: "ftp://{{ ftp_user }}:{{ ftp_password }}@{{ ftp_full_path | regex_replace('ftp://[^/]+', '') }}"
+    dest: "/tmp/{{ ftp_file }}"
+    mode: '0755'   
