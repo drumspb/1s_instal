@@ -17,7 +17,7 @@
 | Переменная          | Описание                                       | Значение по умолчанию |
 |---------------------|-----------------------------------------------|-----------------------|
 | `version_1s`       | Версия 1С, которую необходимо установить       | `8.3.22.1923`        |
-| `ftp_server`       | Адрес FTP-сервера с дистрибутивами             | `ftp://example.com`  |
+| `ftp_full_path`    | Путь к файлу на FTP сервере                    | `ftp://example.com`  |
 | `ftp_user`         | Логин для FTP                                  | `user`               |
 | `ftp_password`     | Пароль для FTP                                 | `password`           |
 
@@ -31,6 +31,6 @@
     - role: 1s_install
       vars:
         version_1s: "8.3.22.1923"
-        ftp_full_path: "ftp://example.com/1s_run"
+        ftp_full_path: "ftp://example.com/1s_run"  
         ftp_user: "ftp_user"
         ftp_password: "ftp_pass"
