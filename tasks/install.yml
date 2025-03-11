@@ -2,3 +2,19 @@
   command: "/tmp/{{ ftp_file }} --mode unattended --enable-components server,ws,server_admin,config_storage_server"
   args:
     creates: "/opt/1cv8/x86_64/{{ version_1s }}"
+
+- name: Связывание службы 1С с systemd
+  command: systemctl link /opt/1cv8/x86_64/{{ version_1s }}/srv1cv8-{{ version_1s }}@.service
+  args:
+    creates: /etc/systemd/system/srv1cv8-{{ version_1s }}@.service
+
+- name: Включение службы 1С
+  systemd:
+    name: srv1cv8-{{ version_1s }}@
+    enabled: yes
+    state: started
+
+- name: Запуск экземпляра службы 1С
+  systemd:
+    name: srv1cv8-{{ version_1s }}@default.service
+    state: started    
