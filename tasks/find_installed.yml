@@ -5,5 +5,6 @@
 
 - name: Определение текущей версии 1С
   set_fact:
-    current_version: "{{ services_list.stdout_lines | map('regex_search', '1c.*8\\.3\\.\\d+\\.\\d+') | select('string') | first }}"
+    current_version: "{{ services_list.stdout_lines | map('regex_search', '8\\.3\\.\\d+\\.\\d+') | select('string') | first }}"
     current_version_service: "{{ services_list.stdout_lines | select('search', '1c.*8\\.3\\.\\d+\\.\\d+') | first }}"
+
