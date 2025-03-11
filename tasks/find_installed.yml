@@ -1,9 +1,9 @@
-- name: Найти установленную версию 1С
-  shell: "find / -type d -path '*/1cv8/x86_64/8.3.*.*' 2>/dev/null | head -n1"
-  register: current_version_path
+- name: Поиск служб 1С через systemctl
+  shell: "systemctl list-unit-files --type=service | grep '1c' | awk '{print $1}'"
+  register: services_list
   changed_when: false
 
 - name: Определение текущей версии 1С
   set_fact:
-    current_version: "{{ current_version_path.stdout | basename }}"
-    current_version_dir: "{{ current_version_path.stdout }}"
+    current_version: "{{ services_list.stdout_lines | map('regex_search', '1c.*8\\.3\\.\\d+\\.\\d+') | select('string') | first }}"
+    current_version_service: "{{ services_list.stdout_lines | select('search', '1c.*8\\.3\\.\\d+\\.\\d+') | first }}"

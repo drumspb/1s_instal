@@ -1,2 +1,7 @@
-- name: Остановить сервисы 1С перед удалением
-  shell: systemctl list-unit-files --type=service | grep "srv1cv8-{{ current_version }}" | awk '{print $1}' | xargs -r systemctl stop
+- name: Остановка службы 1С
+  systemd:
+    name: "{{ current_version_service }}"
+    state: stopped
+  when: current_version_service is defined
+  register: stop_service
+  changed_when: stop_service.changed
